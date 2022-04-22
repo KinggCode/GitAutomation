@@ -28,19 +28,16 @@ class GitAutomation:
             self.commit_message = f'git commit -m "{self.commit_message}"'
             cmd.run(self.commit_message, check=True, shell=True)
 
-            if "CompletedProcess" in cmd.run(self.commit_message, check=True, shell=True):
-                print('yes')
+            self.branch_name = input('Enter branch name: ')
+            push = f'git push origin {self.branch_name}'
 
-            # self.branch_name = input('Enter branch name: ')
-            # push = f'git push origin {self.branch_name}'
+            print(f"Pushing to {self.branch_name} branch ...")
 
-            # print(f"Pushing to {self.branch_name} branch ...")
+            cmd.run(push, check=True, shell=True)
 
-            # cmd.run(push, check=True, shell=True)
-
-            # print(f"Successfully Pushed to {self.branch_name} branch")
-            # self.result = True
-            # return True
+            print(f"Successfully Pushed to {self.branch_name} branch")
+            self.result = True
+            return True
         except:
             print("Error git automation")
             self.result = False
@@ -57,7 +54,7 @@ class GitAutomation:
         create_branch = f'git checkout -b  {branch_name}'
         print(f"Successfully created {self.branch_name} branch")
 
-    def change_git_branch(self):
+    def change_branch(self):
         branch_name = input('Enter branch name you would like to move to: ')
         create_branch = f'git checkout  {branch_name}'
         print(f"Successfully created {self.branch_name} branch")
@@ -104,9 +101,9 @@ if __name__ == "__main__":
         elif choice == 5:
             gitBot.git_status()
         elif choice == 6:
-            gitBot.git_new_branch()
-        elif choice == 7:
-            gitBot.change_git_branch()
+            gitBot.git_pull_process()
+        elif choice == 5:
+            gitBot.git_status()
         else:
             print('Invalid program choice')
         
