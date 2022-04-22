@@ -10,6 +10,31 @@ class GitAutomation:
         self.branch_name = ''
         self.result = ''
 
+    def clone_git_repository(self):
+        repository_name = input('Enter your desired Git repository url (http): ')
+        clone_repo = f'git clone -m "{repository_name}"'
+        cmd.run(clone_repo)
+        print("Successfully Cloned Repository")
+        print()
+
+    def git_status(self):
+        git_status = 'git status'
+        cmd.run(git_status)
+
+    def create_git_repository(self):
+        dir_to_repo = 'git init'
+        cmd.run(dir_to_repo)
+        print("Successfully Changed Local Directory into a Repository")
+        print()
+
+        
+    def link_remote_repository(self):
+        remote_origin = input('Enter your desired remote url (http): ')
+        add_origin = f'git remote add origin "{remote_origin}"'
+        cmd.run(add_origin)
+        print("Successfully linked remote repository to Git")
+        print()
+
     def git_add(self):
         git_add = 'git add .'
         cmd.run(git_add)
@@ -68,7 +93,7 @@ class GitAutomation:
 
         log = "\n" + str(self.commit_message) + " " +  str(self.branch_name) + " " + str(self.result) + " " + str(self.date) + "\n"
         file = 'git_push_log.txt'
-        file = open(file,'w')
+        file = open(file,'a')
         file.write(log)
         file.close()
         print('Message Stored')
@@ -92,6 +117,8 @@ if __name__ == "__main__":
         print('5. Get Repository Status')
         print('6. Create a new branch within the repository')
         print('7. Move to specific branch')
+        print('8.Change Local Directory into Repository')
+        print('9. Link Current Repository to Remote Repository')
 
         choice = eval(input('Enter Git Program number to run: '))
         if choice == 1:
@@ -116,6 +143,12 @@ if __name__ == "__main__":
         elif choice == 7:
             print()
             gitBot.change_branch()
+        elif choice == 8:
+            print()
+            gitBot.create_git_repository()
+        elif choice == 9:
+            print()
+            gitBot.link_remote_repository()
         else:
             print('Invalid program choice')
         
