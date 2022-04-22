@@ -94,17 +94,17 @@ class GitAutomation:
     def write_git_push_log(self,type="regular"):
 
         if type == "commit":
-            self.log["commit_message"] = str(self.commit_message) + "\n"
-            self.log["branch_name"] = str(self.branch_name) + "\n"
-            self.log["output"] = str(self.result) + "\n"
-            self.log["timestamp"] =  str(self.date) + "\n"
-            log = json.dumps(self.log)+ ","
+            self.log["commit_message"] = str(self.commit_message)
+            self.log["branch_name"] = str(self.branch_name)
+            self.log["output"] = str(self.result)
+            self.log["timestamp"] =  str(self.date)
+            log = json.dumps(self.log)
 
         elif type == "regular":
-            self.log["branch_name"] = str(self.branch_name) + "\n"
-            self.log["output"] = str(self.result) + "\n"
-            self.log["timestamp"] =  str(self.date) + "\n"
-            log = json.dumps(self.log) + ","
+            self.log["branch_name"] = str(self.branch_name)
+            self.log["output"] = str(self.result)
+            self.log["timestamp"] =  str(self.date)
+            log = json.dumps(self.log) + ", \n"
 
 
         file = 'git_push_log.txt'
