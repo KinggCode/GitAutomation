@@ -98,7 +98,7 @@ class GitAutomation:
         self.log["branch_name"] = str(self.branch_name)
         self.log["output"] = str(self.result)
         self.log["timestamp"] =  str(self.date)
-        log = json.dump(self.log)
+        log = json.dumps(self.log)
 
         file = 'git_push_log.txt'
         file = open(file,'a')
