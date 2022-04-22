@@ -26,9 +26,11 @@ class GitAutomation:
             
             self.commit_message = input('Enter commit message: ')
             self.commit_message = f'git commit -m "{self.commit_message}"'
-            print(cmd.run(self.commit_message, check=True, shell=True))
+            cmd.run(self.commit_message, check=True, shell=True)
 
-            
+            if "CompletedProcess" in cmd.run(self.commit_message, check=True, shell=True):
+                print('yes')
+
             # self.branch_name = input('Enter branch name: ')
             # push = f'git push origin {self.branch_name}'
 
