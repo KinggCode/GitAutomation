@@ -110,7 +110,7 @@ if __name__ == "__main__":
             gitBot.git_pull_process()
         elif choice == 7:
             print()
-            gitBot.git_status()
+            gitBot.change_branch()
         else:
             print('Invalid program choice')
         
