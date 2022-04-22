@@ -91,14 +91,21 @@ class GitAutomation:
 
 
 
-    def write_git_push_log(self):
+    def write_git_push_log(self,type="regular"):
 
-    
-        self.log["commit_message"] = str(self.commit_message)
-        self.log["branch_name"] = str(self.branch_name)
-        self.log["output"] = str(self.result)
-        self.log["timestamp"] =  str(self.date)
-        log = json.dumps(self.log)
+        if type == "commit":
+            self.log["commit_message"] = str(self.commit_message)
+            self.log["branch_name"] = str(self.branch_name)
+            self.log["output"] = str(self.result)
+            self.log["timestamp"] =  str(self.date)
+            log = json.dumps(self.log)
+
+        elif type == "regular":
+            self.log["branch_name"] = str(self.branch_name)
+            self.log["output"] = str(self.result)
+            self.log["timestamp"] =  str(self.date)
+            log = json.dumps(self.log)
+
 
         file = 'git_push_log.txt'
         file = open(file,'a')
@@ -138,25 +145,30 @@ if __name__ == "__main__":
         elif choice == 3:
             print()
             gitBot.git_push_process()
-            gitBot.write_git_push_log()
+            gitBot.write_git_push_log('commit')
         elif choice == 4:
             print()
             gitBot.git_pull_process()
+            gitBot.write_git_push_log()
         elif choice == 5:
             print()
             gitBot.git_status()
+            gitBot.write_git_push_log()
         elif choice == 6:
             print()
             gitBot.git_new_branch()
+            gitBot.write_git_push_log()
         elif choice == 7:
             print()
             gitBot.change_branch()
+            gitBot.write_git_push_log()
         elif choice == 8:
             print()
             gitBot.create_git_repository()
         elif choice == 9:
             print()
             gitBot.link_remote_repository()
+            gitBot.write_git_push_log()
         else:
             print('Invalid program choice')
         
