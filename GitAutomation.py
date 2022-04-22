@@ -46,7 +46,8 @@ class GitAutomation:
     def git_pull_process(self):
         branch_name = input('Enter branch name: ')
         pull = f'git pull origin {branch_name}'
-        print(f"Successfully Pushed to {self.branch_name} branch")
+        cmd.run(pull)
+        print(f"Successfully pulled from {self.branch_name} main")
 
 
     def git_new_branch(self):
