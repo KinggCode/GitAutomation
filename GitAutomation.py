@@ -106,7 +106,6 @@ class GitAutomation:
             self.log["timestamp"] =  str(self.date)
             log = json.dumps(self.log) + ", \n"
 
-
         file = 'git_push_log.txt'
         file = open(file,'a')
         file.write(log)
