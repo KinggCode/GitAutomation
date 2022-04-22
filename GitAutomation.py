@@ -97,9 +97,9 @@ class GitAutomation:
         self.log["branch_name"] = str(self.branch_name)
         self.log["output"] = str(self.result)
         self.log["timestamp"] =  str(self.date)
-        
+
         file = 'git_push_log.txt'
-        file = open(file,'a')
+        file = open(file,'a',encoding="utf-8")
         file.write(self.log)
         file.close()
         print('Message Stored')
