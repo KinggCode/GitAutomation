@@ -26,18 +26,18 @@ class GitAutomation:
             
             self.commit_message = input('Enter commit message: ')
             self.commit_message = f'git commit -m "{self.commit_message}"'
-            cmd.run(self.commit_message, check=True, shell=True)
+            print(cmd.run(self.commit_message, check=True, shell=True))
 
-            self.branch_name = input('Enter branch name: ')
-            push = f'git push origin {self.branch_name}'
+            # self.branch_name = input('Enter branch name: ')
+            # push = f'git push origin {self.branch_name}'
 
-            print(f"Pushing to {self.branch_name} branch ...")
+            # print(f"Pushing to {self.branch_name} branch ...")
 
-            cmd.run(push, check=True, shell=True)
+            # cmd.run(push, check=True, shell=True)
 
-            print(f"Successfully Pushed to {self.branch_name} branch")
-            self.result = True
-            return True
+            # print(f"Successfully Pushed to {self.branch_name} branch")
+            # self.result = True
+            # return True
         except:
             print("Error git automation")
             self.result = False
