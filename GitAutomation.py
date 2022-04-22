@@ -90,19 +90,26 @@ if __name__ == "__main__":
 
         choice = eval(input('Enter Git Program number to run: '))
         if choice == 1:
+            print()
             gitBot.welcome_screen()
         elif choice == 2:
+            print()
             gitBot.git_add()
         elif choice == 3:
+            print()
             gitBot.git_push_process()
             gitBot.write_git_push_log()
         elif choice == 4:
+            print()
             gitBot.git_pull_process()
         elif choice == 5:
+            print()
             gitBot.git_status()
         elif choice == 6:
+            print()
             gitBot.git_pull_process()
         elif choice == 7:
+            print()
             gitBot.git_status()
         else:
             print('Invalid program choice')
