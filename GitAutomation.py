@@ -111,7 +111,7 @@ if __name__ == "__main__":
             gitBot.git_status()
         elif choice == 6:
             print()
-            gitBot.git_pull_process()
+            gitBot.git_new_branch()
         elif choice == 7:
             print()
             gitBot.change_branch()
