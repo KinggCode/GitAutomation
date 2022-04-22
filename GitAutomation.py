@@ -9,6 +9,7 @@ class GitAutomation:
         self.commit_message = ''
         self.branch_name = ''
         self.result = ''
+        self.log = dict()
 
     def clone_git_repository(self):
         repository_name = input('Enter your desired Git repository url (http): ')
@@ -91,10 +92,15 @@ class GitAutomation:
 
     def write_git_push_log(self):
 
-        log = "\n" + str(self.commit_message) + " " +  str(self.branch_name) + " " + str(self.result) + " " + str(self.date) + "\n"
+    
+        self.log["commit_message"] = str(self.commit_message)
+        self.log["branch_name"] = str(self.branch_name)
+        self.log["output"] = str(self.result)
+        self.log["timestamp"] =  str(self.date)
+        
         file = 'git_push_log.txt'
         file = open(file,'a')
-        file.write(log)
+        file.write(self.log)
         file.close()
         print('Message Stored')
         return
