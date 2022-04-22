@@ -1,6 +1,7 @@
 import random 
 import datetime
 import subprocess as cmd
+import json
 
 class GitAutomation:
     def __init__(self):
@@ -97,11 +98,11 @@ class GitAutomation:
         self.log["branch_name"] = str(self.branch_name)
         self.log["output"] = str(self.result)
         self.log["timestamp"] =  str(self.date)
-        self.log = [self.log]
-        
+        log = json.dump(self.log)
+
         file = 'git_push_log.txt'
         file = open(file,'a')
-        file.write(self.log)
+        file.write(log)
         file.close()
         print('Message Stored')
         return
