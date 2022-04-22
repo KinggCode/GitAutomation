@@ -79,6 +79,7 @@ if __name__ == "__main__":
     gitBot = GitAutomation()
 
     while choice != 0:
+        print()
         print('0. Exiting Git Program')
         print('1. Git Automation Screen')
         print('2. Add New changes to Local Repository')
