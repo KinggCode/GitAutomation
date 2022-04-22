@@ -52,12 +52,15 @@ class GitAutomation:
     def git_new_branch(self):
         branch_name = input('Enter branch name you would like to create: ')
         create_branch = f'git checkout -b  {branch_name}'
+        cmd.run(create_branch)
         print(f"Successfully created {self.branch_name} branch")
 
     def change_branch(self):
         branch_name = input('Enter branch name you would like to move to: ')
-        create_branch = f'git checkout  {branch_name}'
-        print(f"Successfully created {self.branch_name} branch")
+        move_to_branch = f'git checkout  {branch_name}'
+        cmd.run(move_to_branch)
+        print(f"Successfully moved to {self.branch_name} branch")
+
 
 
     def write_git_push_log(self):
