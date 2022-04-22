@@ -14,6 +14,7 @@ class GitAutomation:
         git_add = 'git add .'
         cmd.run(git_add)
         print("Successfully Added New changes to Local Repository")
+        print()
 
     def git_status(self):
         git_status = 'git status'
