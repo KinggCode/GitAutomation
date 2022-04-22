@@ -49,6 +49,16 @@ class GitAutomation:
         print(f"Successfully Pushed to {self.branch_name} branch")
 
 
+    def git_new_branch(self):
+        branch_name = input('Enter branch name you would like to create: ')
+        create_branch = f'git checkout -b  {branch_name}'
+        print(f"Successfully created {self.branch_name} branch")
+
+    def change_git_branch(self):
+        branch_name = input('Enter branch name you would like to move to: ')
+        create_branch = f'git checkout  {branch_name}'
+        print(f"Successfully created {self.branch_name} branch")
+
 
     def write_git_push_log(self):
 
@@ -75,6 +85,8 @@ if __name__ == "__main__":
         print('3. Git push to specific branch')
         print('4. Git pull from specific branch')
         print('5. Get Repository Status')
+        print('6. Create a new branch within the repository')
+        print('7. Move to specific branch')
 
         choice = eval(input('Enter Git Program number to run: '))
         if choice == 1:
@@ -88,6 +100,10 @@ if __name__ == "__main__":
             gitBot.git_pull_process()
         elif choice == 5:
             gitBot.git_status()
+        elif choice == 6:
+            gitBot.git_new_branch()
+        elif choice == 7:
+            gitBot.change_git_branch()
         else:
             print('Invalid program choice')
         
