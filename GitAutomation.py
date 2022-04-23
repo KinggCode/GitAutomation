@@ -47,7 +47,43 @@ class GitAutomation:
         git_status = 'git status'
         cmd.run(git_status)
 
-    def git_push_process(self):
+    
+    def git_commit_without_push(self):
+        try:
+            self.git_add()
+            
+            self.commit_message = input('Enter commit message: ')
+            self.commit_message = f'git commit -m "{self.commit_message}"'
+            cmd.run(self.commit_message, check=True, shell=True)
+
+            print(f"Successfully Commited Logs")
+            self.result = True
+            return True
+        except:
+            print("Error git automation")
+            self.result = False
+            return False
+    
+    def git_push_process_only(self):
+        try:
+        
+            self.branch_name = input('Enter branch name: ')
+            push = f'git push origin {self.branch_name}'
+
+            print(f"Pushing to {self.branch_name} branch ...")
+
+            cmd.run(push, check=True, shell=True)
+
+            print(f"Successfully Pushed to {self.branch_name} branch")
+            self.result = True
+            return True
+        except:
+            print("Error git automation")
+            self.result = False
+            return False
+
+
+    def git_push_process_with_commit(self):
         try:
             self.git_add()
             
@@ -91,27 +127,27 @@ class GitAutomation:
 
 
 
-    def write_git_push_log(self,type="regular"):
+    # def write_git_push_log(self,type="regular"):
 
-        if type == "commit":
-            self.log["commit_message"] = str(self.commit_message)
-            self.log["branch_name"] = str(self.branch_name)
-            self.log["output"] = str(self.result)
-            self.log["timestamp"] =  str(self.date)
-            log = json.dumps(self.log)
+    #     if type == "commit":
+    #         self.log["commit_message"] = str(self.commit_message)
+    #         self.log["branch_name"] = str(self.branch_name)
+    #         self.log["output"] = str(self.result)
+    #         self.log["timestamp"] =  str(self.date)
+    #         log = json.dumps(self.log)
 
-        elif type == "regular":
-            self.log["branch_name"] = str(self.branch_name)
-            self.log["output"] = str(self.result)
-            self.log["timestamp"] =  str(self.date)
-            log = json.dumps(self.log) + ","
+    #     elif type == "regular":
+    #         self.log["branch_name"] = str(self.branch_name)
+    #         self.log["output"] = str(self.result)
+    #         self.log["timestamp"] =  str(self.date)
+    #         log = json.dumps(self.log) + ","
 
-        file = 'git_push_log.txt'
-        file = open(file,'a')
-        file.write(log)
-        file.close()
-        print('Message Stored')
-        return
+    #     file = 'git_push_log.txt'
+    #     file = open(file,'a')
+    #     file.write(log)
+    #     file.close()
+    #     print('Message Stored')
+    #     return
 
     def welcome_screen(self):
         print('Welcome to Git Automation')
@@ -126,13 +162,15 @@ if __name__ == "__main__":
         print('0. Exiting Git Program')
         print('1. Git Automation Screen')
         print('2. Add New changes to Local Repository')
-        print('3. Git push to specific branch')
-        print('4. Git pull from specific branch')
-        print('5. Get Repository Status')
-        print('6. Create a new branch within the repository')
-        print('7. Move to specific branch')
-        print('8.Change Local Directory into Repository')
-        print('9. Link Current Repository to Remote Repository')
+        print('3. Git commit to specific repo stage without push')
+        print('4. Git push to specific branch only (without adding and commiting)')
+        print('5. Git push to specific branch only (with adding and commiting)')
+        print('6. Git pull from specific branch')
+        print('7. Get Repository Status')
+        print('8. Create a new branch within the repository')
+        print('9. Move to specific branch')
+        print('10.Change Local Directory into Repository')
+        print('11. Link Current Repository to Remote Repository')
 
         choice = eval(input('Enter Git Program number to run: '))
         if choice == 1:
@@ -143,31 +181,31 @@ if __name__ == "__main__":
             gitBot.git_add()
         elif choice == 3:
             print()
-            gitBot.git_push_process()
-            gitBot.write_git_push_log('commit')
+            gitBot.git_commit_without_push()
         elif choice == 4:
             print()
-            gitBot.git_pull_process()
-            gitBot.write_git_push_log()
+            gitBot.git_push_process_only()
         elif choice == 5:
             print()
-            gitBot.git_status()
-            gitBot.write_git_push_log()
+            gitBot.git_push_process_with_commit()
         elif choice == 6:
             print()
-            gitBot.git_new_branch()
-            gitBot.write_git_push_log()
+            gitBot.git_pull_process()
         elif choice == 7:
             print()
-            gitBot.change_branch()
-            gitBot.write_git_push_log()
+            gitBot.git_status()
         elif choice == 8:
             print()
-            gitBot.create_git_repository()
+            gitBot.git_new_branch()
         elif choice == 9:
             print()
+            gitBot.change_branch()
+        elif choice == 10:
+            print()
+            gitBot.create_git_repository()
+        elif choice == 11:
+            print()
             gitBot.link_remote_repository()
-            gitBot.write_git_push_log()
         else:
             print('Invalid program choice')
         
