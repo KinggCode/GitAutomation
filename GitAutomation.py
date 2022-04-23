@@ -12,6 +12,15 @@ class GitAutomation:
         self.result = ''
         self.log = dict()
 
+    def create_git_repository(self):
+        '''
+        Everything starts from here. The first step is to initialize a new Git repo locally in your project root. 
+        '''
+        dir_to_repo = 'git init'
+        cmd.run(dir_to_repo)
+        print("Successfully Changed Local Directory into a Repository")
+        print()
+
     def clone_git_repository(self):
         repository_name = input('Enter your desired Git repository url (http): ')
         clone_repo = f'git clone -m "{repository_name}"'
@@ -23,12 +32,6 @@ class GitAutomation:
         git_status = 'git status'
         cmd.run(git_status)
 
-    def create_git_repository(self):
-        dir_to_repo = 'git init'
-        cmd.run(dir_to_repo)
-        print("Successfully Changed Local Directory into a Repository")
-        print()
-
         
     def link_remote_repository(self):
         remote_origin = input('Enter your desired remote url (http): ')
@@ -37,20 +40,23 @@ class GitAutomation:
         print("Successfully linked remote repository to Git")
         print()
 
-    def git_add(self):
+    def git_add_all(self):
         git_add = 'git add .'
         cmd.run(git_add)
         print("Successfully Added New changes to Local Repository")
         print()
 
     def git_status(self):
+        '''
+        shows the status of the current repository including staged, unstaged, and untracked files.
+        '''
         git_status = 'git status'
         cmd.run(git_status)
 
     
     def git_commit_without_push(self):
         try:
-            self.git_add()
+            self.git_add_all()
             
             self.commit_message = input('Enter commit message: ')
             self.commit_message = f'git commit -m "{self.commit_message}"'
@@ -85,7 +91,7 @@ class GitAutomation:
 
     def git_push_process_with_commit(self):
         try:
-            self.git_add()
+            self.git_add_all()
             
             self.commit_message = input('Enter commit message: ')
             self.commit_message = f'git commit -m "{self.commit_message}"'
@@ -124,6 +130,80 @@ class GitAutomation:
         move_to_branch = f'git checkout  {branch_name}'
         cmd.run(move_to_branch)
         print(f"Successfully moved to {self.branch_name} branch")
+
+    def git_config_info(self):
+        '''
+        returns a list of information about your git configuration including user name and email
+        '''
+        confg_info = f'git config -l'
+        cmd.run(confg_info)
+        print(f"Successfully fetched git configuration information")
+
+    def set_git_username(self):
+        '''
+        returns a list of information about your git configuration including user name and email
+        '''
+        username = input('Enter git username: ')
+        set_username = f'git config --global user.name "{username}"'
+        cmd.run(set_username)
+        print(f"Successfully set git configuration username")
+
+    def set_git_email(self):
+        '''
+        returns a list of information about your git configuration including user name and email
+        '''
+        email = input('Enter git username: ')
+        set_username = f'git config --global user.email "{email}"'
+        cmd.run(set_username)
+        print(f"Successfully set git configuration email")
+
+    def git_add_file(self):
+        '''
+        Just replace filename_here with the name of the file you want to add to the staging area
+        '''
+        filename = input('Enter git username: ')
+        git_add = f'git add "{filename}"'
+        cmd.run(git_add)
+        print("Successfully Added New changes to Local Repository")
+        print()
+
+    def git_add_wildcard_only(self):
+        '''
+        With the asterisk in the command below, you can add all files starting with 'fil' in the staging area.
+        '''
+        wildcard = input('Enter file wildcard type: ')
+        git_add_wildcard = f'git add "{wildcard}"*'
+        cmd.run(git_add_wildcard)
+        print("Successfully Added Wildcard files to Git Repository")
+        print()
+
+    def git_history(self):
+        '''
+            shows the commit history for the current repository        
+        '''
+        git_add_wildcard = f'git log'
+        cmd.run(git_add_wildcard)
+        print("Successfully Fetched all git logs")
+        print()
+
+    def git_history_extended(self):
+        '''
+            shows the commit's history including all files and their changes:       
+        '''
+        git_add_wildcard = f'git log'
+        cmd.run(git_add_wildcard)
+        print("Successfully Fetched all git logs with more information")
+        print()
+
+    def git_delete(self):
+        '''
+            expects a commit message to explain why the file was deleted.       
+        '''
+        filename = input('Enter git filename: ')
+        delete_file = f'git rm "{filename}"'
+        cmd.run(delete_file)
+        print("Successfully Deleted File from Git Repository")
+        print()
 
 
 
@@ -178,7 +258,7 @@ if __name__ == "__main__":
             gitBot.welcome_screen()
         elif choice == 2:
             print()
-            gitBot.git_add()
+            gitBot.git_add_all()
         elif choice == 3:
             print()
             gitBot.git_commit_without_push()
